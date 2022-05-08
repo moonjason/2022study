@@ -42,31 +42,31 @@ Output: [8,9,9,9,0,0,0,1]
     this.next = (next===undefined ? null : next)
  }
 
- var addTwoNumbers = function(l1, l2) {
-    let dummy=new ListNode();
-    let temp=dummy;
-    let sum=0;
+//  var addTwoNumbers = function(l1, l2) {
+//     let dummy=new ListNode();
+//     let temp=dummy;
+//     let sum=0;
 	
-    while(l1||l2||sum){
-        if(l1){
-            sum+=l1.val
-            l1=l1.next
-        }
-        if(l2){
-            sum+=l2.val
-            l2=l2.next
-        }
-        const remainder=sum%10 
-        sum=Math.floor(sum/10)
-        temp.next=new ListNode(remainder)
-        temp=temp.next
-    }
-    return dummy.next
-};
+//     while(l1||l2||sum){
+//         if(l1){
+//             sum+=l1.val
+//             l1=l1.next
+//         }
+//         if(l2){
+//             sum+=l2.val
+//             l2=l2.next
+//         }
+//         const remainder=sum%10 
+//         sum=Math.floor(sum/10)
+//         temp.next=new ListNode(remainder)
+//         temp=temp.next
+//     }
+//     return dummy.next
+// };
 
 
 var addTwoNumbers = function(l1, l2) {
-    let carry = 0;
+    let carry = 0; // This handles digits that are more than 9 (e.g. 15 would carry over 1)
     let previousNode = new ListNode();
     const headNode = previousNode;
     while ( l1 || l2 || carry) {
@@ -79,7 +79,7 @@ var addTwoNumbers = function(l1, l2) {
         if (l2){
             val2 = l2.val;
             l2 = l2.next;
-        }
+        }   
         const sum = val1 + val2 + carry;
         carry = Math.floor(sum / 10); // same as :  sum > 9 ? 1 : 0 
         const digit = sum % 10; // Sifting out the ones place of the digit - 12 -> 2 with carry over of 1 
@@ -90,7 +90,7 @@ var addTwoNumbers = function(l1, l2) {
     return headNode.next
 };
 
-// Not My solution ... 
+// Not My solution ...  https://youtu.be/zSwAnsQp09k
 
 console.log(addTwoNumbers([2,4,3], [5,6,4]))
 console.log(addTwoNumbers([9,9,9,9,9,9,9], [9, 9, 9, 9]))
