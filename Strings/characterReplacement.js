@@ -75,19 +75,28 @@ var characterReplacement = function(s, k) { // "AABABBA", 1
     return maxSubStr
 };
 
-function lengthOfLongestSubstring(s) {
-    let seen = new Set();
-    let longest = 0;
-    let l = 0;
-    for (let r = 0; r < s.length; r++) {
-      while (seen.has(s[r])) {
-        seen.delete(s[l]);
-        l++;
+// optimal
+const characterReplacement = (s, k) => {
+    let left = 0;
+    let right = 0;
+    let maxCharCount = 0;
+    const visited = {};
+  
+    while (right < s.length) {
+      const char = s[right];
+      visited[char] = visited[char] ? visited[char] + 1 : 1;
+  
+      if (visited[char] > maxCharCount) maxCharCount = visited[char]; // set the most frequent character value 
+  
+      if (right - left + 1 - maxCharCount > k) { // right - left + 1 is window length => window length - most frequent char acount greater than # of times to replace
+        visited[s[left]]--;
+        left++;
       }
-      seen.add(s[r]);
-      longest = Math.max(longest, r - l + 1);
+  
+      right++;
     }
-    return longest;
+  
+    return right - left;
 };
 
 console.log(characterReplacement('AABABBA', 1))
