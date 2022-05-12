@@ -50,11 +50,14 @@ var twoSum = function(nums, target) {
     let maps = new Map();
     for (let i = 0; i < nums.length; i++) {
       let difference = target - nums[i]
+
       console.log('difference = ', difference, `| ${target} - ${nums[i]}` )
+
       if (maps.has(difference)) {
         return [maps.get(difference), i]
       }
       maps.set(nums[i], i)
+
       console.log(`storing...${nums[i]}:${i}`) // Storing the Index based on the Number Required to get Target
     }
     return []
