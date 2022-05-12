@@ -94,7 +94,7 @@ const threeSum = (nums) => { // [-1,0,1,2,-1,-4]
                 while(nums[left] === nums[left + 1]) left++  // check if duplicate
                 while(nums[right] === nums[right - 1]) right-- // check it duplicate 
                 left++;
-                right--;
+                right--; // we 'eliminate' both sides because those pairs have to be unique in combination with the fixed number, it is possible to come across those again with the fixed number (i) is moved over 
              }
         }
         
